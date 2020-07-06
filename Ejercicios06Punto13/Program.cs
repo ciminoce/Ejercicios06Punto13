@@ -8,37 +8,41 @@ namespace Ejercicios06Punto13
         {
             Console.Title = "Ejercicios 06 Punto 13";
             int nro;
-            bool hayError = true;
+            bool seguir = true;
             do
             {
-                Console.Write("Ingrese un número de al menos 3 cifras:");
-                if (!int.TryParse(Console.ReadLine(), out nro))
+                bool hayError = true;
+                do
                 {
-                    Console.WriteLine("Nro mal ingresado");
-                }else if (nro < 0)
-                {
-                    Console.WriteLine("Debe ingresar un número positivo");
-                }
-                else if (nro < 100)
-                {
-                    Console.WriteLine("Debe ingresar un nro de al menos 3 cifras");
-                }
-                else
-                {
-                    hayError = false;
-                }
+                    Console.Write("Ingrese un número de al menos 3 cifras:");
+                    if (!int.TryParse(Console.ReadLine(), out nro))
+                    {
+                        Console.WriteLine("Nro mal ingresado");
+                    }
+                    else if (nro < 0)
+                    {
+                        Console.WriteLine("Debe ingresar un número positivo");
+                    }
+                    else if (nro < 100)
+                    {
+                        Console.WriteLine("Debe ingresar un nro de al menos 3 cifras");
+                    }
+                    else
+                    {
+                        hayError = false;
+                    }
 
-            } while (hayError);
+                } while (hayError);
 
-            if (NroPalindromo(nro))
-            {
-                Console.WriteLine($"{nro} es palíndromo");
-            }
-            else
-            {
-                Console.WriteLine($"{nro} no es palíndromo");
-            }
+                Console.WriteLine(NroPalindromo(nro) ? $"{nro} es palíndromo" : $"{nro} no es palíndromo");
 
+                Console.Write("Ejecuta otra vez?(S/N):");
+                var respuesta = Console.ReadLine();
+                if (respuesta.ToUpper()=="N")
+                {
+                    seguir = false;
+                }
+            } while (seguir);
             Console.ReadLine();
 
         }
